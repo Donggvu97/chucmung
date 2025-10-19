@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc Mừng Ngày 20/10</title>
+    <style>
+        body {
+            background: url('https://png.pngtree.com/background/20250205/original/pngtree-beautiful-pink-roses-and-delicate-rose-petals-resting-on-a-textured-picture-image_13623893.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-color: rgb(230, 85, 109); /* Dự phòng nếu hình không load */
+            color: #0e0d0d;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Để hiệu ứng không tràn */
+            position: relative;
+        }
+        .container {
+            background: rgba(231, 178, 187, 0.7); /* Nền hồng mờ */
+            padding: 50px;
+            border-radius: 10px;
+            z-index: 1; /* Đặt trên hiệu ứng */
+        }
+        h1 {
+            font-size: 36px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 15px 30px;
+            font-size: 20px;
+            background-color: #fd0e85;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #ff1493;
+        }
+
+        /* Hiệu ứng cánh hoa rơi và lá thu */
+        .falling-item {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            opacity: 0.7;
+            animation: fall linear infinite, sway 2s ease-in-out infinite alternate;
+        }
+        .petal {
+            background: radial-gradient(circle, #ffb6c1, #ff69b4); /* Hoa anh đào hồng */
+            border-radius: 50% 0 50% 50%;
+            transform: rotate(45deg);
+        }
+        .leaf {
+            background: linear-gradient(to bottom, #ffd700, #ff8c00); /* Lá thu vàng cam */
+            border-radius: 0 50% 50% 50%;
+            transform: rotate(30deg);
+        }
+        @keyframes fall {
+            0% { transform: translateY(-50px) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(720deg); }
+        }
+        @keyframes sway {
+            0% { transform: translateX(-10px); }
+            100% { transform: translateX(10px); }
+        }
+
+        /* Hiệu ứng pháo hoa chuyên nghiệp hơn */
+        .firework-container {
+            position: absolute;
+            pointer-events: none;
+        }
+        .firework {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            opacity: 1;
+            animation: burst 1.2s ease-out forwards;
+        }
+        @keyframes burst {
+            0% { transform: scale(0) translate(0, 0); opacity: 1; }
+            100% { transform: scale(1.5) translate(var(--dx), var(--dy)); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chúc Mừng Ngày Phụ Nữ Việt Nam 20/10</h1>
+        <button onclick="location.href='family.html'">Dành cho người thân (chị/em)</button>
+        <button onclick="location.href='friends.html'">Dành cho bạn bè, đồng nghiệp</button>
+        <button onclick="location.href='lover.html'">Dành cho người yêu của Đồng</button>
+        <!-- <button onclick="location.href='other.html'">Dành cho các mối quan hệ khác</button> -->
+    </div>
+
+    <script>
+        // Tạo cánh hoa rơi và lá thu ngẫu nhiên
+        function createFallingItem() {
+            const item = document.createElement('div');
+            item.classList.add('falling-item');
+            const isPetal = Math.random() > 0.5;
+            item.classList.add(isPetal ? 'petal' : 'leaf');
+            item.style.left = Math.random() * 100 + 'vw';
+            item.style.width = Math.random() * 10 + 10 + 'px';
+            item.style.height = item.style.width;
+            item.style.animationDuration = Math.random() * 4 + 6 + 's'; // 6-10s
+            item.style.animationDelay = Math.random() * 5 + 's';
+            document.body.appendChild(item);
+            setTimeout(() => item.remove(), 12000); // Xóa sau 12s
+        }
+        setInterval(createFallingItem, 200); // Tạo mới mỗi 200ms để nhiều hơn
+
+        // Tạo pháo hoa với nhiều chùm, màu sắc đa dạng
+        function createFirework() {
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ff4500', '#ff69b4', '#ffd700', '#8a2be2'];
+            const container = document.createElement('div');
+            container.classList.add('firework-container');
+            container.style.left = Math.random() * 100 + 'vw';
+            container.style.top = Math.random() * 100 + 'vh';
+            for (let i = 0; i < 50; i++) { // Tăng lên 50 particles
+                const particle = document.createElement('div');
+                particle.classList.add('firework');
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                const angle = Math.random() * 360;
+                const distance = Math.random() * 100 + 50; // Burst rộng hơn
+                particle.style.setProperty('--dx', `${Math.cos(angle) * distance}px`);
+                particle.style.setProperty('--dy', `${Math.sin(angle) * distance}px`);
+                particle.style.animationDelay = Math.random() * 0.3 + 's';
+                container.appendChild(particle);
+            }
+            document.body.appendChild(container);
+            setTimeout(() => container.remove(), 2000); // Xóa sau 2s
+        }
+        setInterval(createFirework, 2000); // Pháo hoa mỗi 2s để nhiều chùm hơn
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Không Thể Xem</title>
+    <style>
+        body {
+            background: url('https://png.pngtree.com/background/20250205/original/pngtree-beautiful-pink-roses-and-delicate-rose-petals-resting-on-a-textured-picture-image_13623893.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-color: pink;
+            color: #000000;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 100px;
+        }
+        h1 {
+            font-size: 28px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 20px;
+            background-color: #f8067f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hệ thống nhận diện bạn hiện không phải là người yêu của Đồng nên không có quyền xem nội dung này. Trân trọng! 😊😊</h1>
+    <button onclick="window.closeWindow()">Đóng</button>
+<script>function closeWindow() {
+    window.close(); // Thử đóng tab
+    setTimeout(() => {
+        window.location.href = 'about:blank'; // Fallback nếu window.close() không hoạt động
+    }, 100); // Chờ 100ms để đảm bảo window.close() được thử trước
+}</script>
+</body>
+</html>

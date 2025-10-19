@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoa Cho Người Thân</title>
+    <style>
+        body {
+            background: url('https://png.pngtree.com/background/20250205/original/pngtree-beautiful-pink-roses-and-delicate-rose-petals-resting-on-a-textured-picture-image_13623893.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-color: pink;
+            color: #020202;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 50px;
+        }
+        img {
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        p {
+            font-size: 24px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 20px;
+            background-color: #fd0e85;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff1493;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bó hoa tươi đẹp này xin gửi tặng chị/em</h1>
+    <img id="flowerImg" src="" alt="Bó hoa">
+    <p id="meaning"></p>
+    <button onclick="goToWish()">Lời chúc dành cho bạn</button>
+
+    <script>
+        const flowers = [
+            {name: 'Hoa Mẫu Đơn', image: 'https://hoathangtu.com/wp-content/uploads/2022/08/img_0966_b3ef6e2a0fef4bd59e0f42a40b33760e-scaled.jpg', meaning: 'Hoa mẫu đơn biểu tượng cho sự thịnh vượng, giàu có và may mắn'},
+            {name: 'Hoa Hướng Dương', image: 'https://dienhoa60giay.com/upload/bo-hoa-huong-duong-1y2y2_-14-01-2019-14-29-50.jpg', meaning: 'Hoa hướng dương biểu tượng cho sự lạc quan, nghị lực, niềm tin vào tương lai và sự chung thủy'},
+            {name: 'Hoa Sen', image: 'https://shophoahong.com/wp-content/uploads/2022/06/sen6.jpg', meaning: 'Hoa sen trắng biểu tượng cho sự thuần khiết, bao dung và giác ngộ'},
+            {name: 'Hoa Đồng Tiền', image: 'https://mrhoa.com/wp-content/uploads/2017/09/bo-hoa-dong-tien-6.jpg', meaning: 'Hoa đồng tiền biểu tượng cho hạnh phúc, tài lộc, sự may mắn và thịnh vượng'},
+            {name: 'Hoa Ly', image: 'https://diachishophoa.com/uploads/noidung/images/baiviet/bo-hoa-ly.jpg', meaning: 'Hoa ly biểu tượng cho sự tinh khiết, đức hạnh và vẻ đẹp thanh cao'},
+            {name: 'Hoa Lan', image: 'https://d1kwj86ddez2oj.cloudfront.net/23102023/Y798BsrKGJ0EMl5QhNSHkvmP4olCaUlWTENtPuXJ.jpg', meaning: 'Hoa lan biểu tượng cho tình yêu, vẻ đẹp tinh tế và sự sang trọng'},
+            {name: 'Hoa Cẩm Chướng', image: 'https://7fgarden.com/wp-content/uploads/2025/01/bo-hoa-cam-chuong-hong-847x1024.webp', meaning: 'Hoa cẩm chướng iểu tượng cho tình yêu, lòng biết ơn, sự ngưỡng mộ và lòng chung thủy'},
+            {name: 'Hoa Thạch Thảo', image: 'https://hoatuoidalat.vn/wp-content/uploads/2021/04/bo-hoa-thach-thao-tim-dep.jpg', meaning: 'Hoa thạch thảo biểu tượng cho tình yêu, sự tinh tế và dịu dàng'}
+        ];
+        const randomIndex = Math.floor(Math.random() * flowers.length);
+        const selectedFlower = flowers[randomIndex];
+        document.getElementById('flowerImg').src = selectedFlower.image;
+        document.getElementById('meaning').innerText = selectedFlower.meaning;
+
+        function goToWish() {
+            localStorage.setItem('flowerImage', selectedFlower.image);
+            location.href = 'wish_family.html';
+        }
+    </script>
+</body>
+</html>

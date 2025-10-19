@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoa Cho Bạn Bè</title>
+    <style>
+        /* Giống family.html */
+        body {
+            background: url('https://png.pngtree.com/background/20250205/original/pngtree-beautiful-pink-roses-and-delicate-rose-petals-resting-on-a-textured-picture-image_13623893.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-color: pink;
+            color: #050505;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 50px;
+        }
+        img {
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        p {
+            font-size: 24px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 20px;
+            background-color: #fd0e85;
+            color: rgb(248, 243, 243);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff1493;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bó hoa xinh đẹp này xin gửi tặng bạn</h1>
+    <img id="flowerImg" src="" alt="Bó hoa">
+    <p id="meaning"></p>
+    <button onclick="goToWish()">Lời chúc dành cho bạn</button>
+
+    <script>
+        const flowers = [
+            {name: 'Hoa Tulip', image: 'https://hoatuoimymy.com/wp-content/uploads/2024/09/bohoa15.jpg', meaning: 'Hoa Tulip hồng thể hiện tình cảm dịu dàng và lòng biết ơn, sự trân trọng với bạn bè'},
+            {name: 'Hoa Cúc Tana', image: 'https://hoabaxa.com/wp-content/uploads/2019/04/BO-HOA-CUC-TANA.jpg', meaning: 'Hoa Cúc Tana biểu tượng cho sự gắn kết, một tình bạn bền lâu và đầy chân thành'},
+            {name: 'Hoa Cẩm Tú Cầu', image: 'https://i.pinimg.com/736x/15/59/fa/1559faf3a5ccf77617f1c0177cd61970.jpg', meaning: 'Hoa cẩm tú cầu xanh dương biểu tượng cho lòng biết ơn, sự chân thành, bình yên và hài hòa'},
+            {name: 'Hoa Baby Trắng', image: 'https://m.media-amazon.com/images/I/81IWW1QM+FL.jpg', meaning: 'Hoa baby trắng biểu tượng cho sự tinh khiết và tình yêu vĩnh cửu'},
+            {name: 'Hoa Lavender', image: 'https://img.lazcdn.com/g/p/c88150422fb4907a12cc9a4b8ddd64dd.jpg_720x720q80.jpg', meaning: 'Hoa lavender biểu tượng cho sự duyên dáng, bình tĩnh và tinh tế'},
+            {name: 'Hoa Thủy Tiên', image: 'https://hoatheomua.net/wp-content/uploads/2024/11/thuy-tien-bo-moc-vang-2-min.jpg', meaning: 'Hoa thủy tiên vàng biểu tượng cho sự khởi đầu mới, thịnh vượng và hy vọng'},
+            {name: 'Hoa Phong Lữ', image: 'https://m.media-amazon.com/images/I/81jvMgKmK9L._UF350,350_QL80_.jpg', meaning: 'Hoa phong lữ biểu tượng cho tình bạn và lời chúc tốt lành'},
+            {name: 'Hoa Cát Tường', image: 'https://hoayeuthuong.com/hinh-hoa-tuoi/bo-hoa-tuoi/14451_gio-cat-tuong-xanh.jpg', meaning: 'Hoa cát tường biểu tượng cho sự may mắn, hạnh phúc và viên mãn'}
+        ];
+        const randomIndex = Math.floor(Math.random() * flowers.length);
+        const selectedFlower = flowers[randomIndex];
+        document.getElementById('flowerImg').src = selectedFlower.image;
+        document.getElementById('meaning').innerText = selectedFlower.meaning;
+
+        function goToWish() {
+            localStorage.setItem('flowerImage', selectedFlower.image);
+            location.href = 'wish_friends.html';
+        }
+    </script>
+</body>
+</html>
