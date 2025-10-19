@@ -14,8 +14,36 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
-        h1 {
+        .loading-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #loading-text {
+            font-size: 28px;
+            margin-right: 20px;
+        }
+        .spinner {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #f8067f;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        #message {
+            display: none;
             font-size: 28px;
         }
         button {
@@ -26,17 +54,35 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin-top: 20px;
+            display: none; /* Ẩn nút ban đầu */
         }
     </style>
 </head>
 <body>
-    <h1>Hệ thống nhận diện bạn hiện không phải là người yêu của Đồng nên không có quyền xem nội dung này. Trân trọng! 😊😊</h1>
-    <button onclick="window.closeWindow()">Đóng</button>
-<script>function closeWindow() {
-    window.close(); // Thử đóng tab
-    setTimeout(() => {
-        window.location.href = 'about:blank'; // Fallback nếu window.close() không hoạt động
-    }, 100); // Chờ 100ms để đảm bảo window.close() được thử trước
-}</script>
+    <div class="loading-container" id="loading">
+        <span id="loading-text">Đang nhận diện...</span>
+        <div class="spinner"></div>
+    </div>
+    <h1 id="message">Hệ thống nhận diện bạn hiện không phải là người yêu của Đồng nên không có quyền xem nội dung này. Trân trọng! 😊😊</h1>
+    <button id="closeButton" onclick="closeWindow()">Đóng</button>
+
+    <script>
+        // Ẩn loading và hiển thị message cùng nút Đóng sau 3 giây
+        setTimeout(() => {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('message').style.display = 'block';
+            document.getElementById('closeButton').style.display = 'block'; // Hiển thị nút Đóng
+        }, 3000);
+
+        function closeWindow() {
+            if (window.opener && !window.opener.closed) {
+                window.close(); // Thử đóng tab nếu được mở từ window.open
+            }
+            setTimeout(() => {
+                window.location.href = 'index.html'; // Fallback quay về trang chính
+            }, 100); // Chờ 100ms để window.close() được thử trước
+        }
+    </script>
 </body>
 </html>
