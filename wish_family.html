@@ -22,6 +22,8 @@
             border-radius: 10px;
             max-width: 800px;
             margin: 50px auto;
+            overflow: hidden; /* Đảm bảo hiệu ứng không tràn */
+            white-space: pre-wrap; /* Giữ xuống dòng tự nhiên */
         }
         button.gift-button {
             padding: 15px 30px;
@@ -32,7 +34,7 @@
             border-radius: 5px;
             cursor: pointer;
             margin: 20px auto;
-            display: block;
+            display: none; /* Ẩn nút ban đầu */
         }
         button.gift-button:hover {
             background-color: #ff1493;
@@ -46,6 +48,7 @@
             border-radius: 10px;
             max-width: 600px;
             margin: 20px auto;
+            display: none;
         }
         #poem button {
             padding: 10px 20px;
@@ -59,11 +62,11 @@
     </style>
 </head>
 <body>
-    <h1>Chúc chị/em luôn mạnh khỏe, đẹp rạng ngời, nhiều niềm vui và có một ngày 20/10 hạnh phúc, trọn vẹn bên những người mình yêu thương</h1>
-    <button class="gift-button" onclick="showPoem()">Món quà nhỏ dành cho bạn</button>
+    <h1 id="wishText"></h1>
+    <button class="gift-button" id="giftButton" onclick="showPoem()">Món quà nhỏ dành cho bạn</button>
     <div id="poem" style="display: none;">
         <p id="poemText"></p>
-        <button onclick="window.closeWindow()">Đóng</button>
+        <button onclick="closeWindow()">Đóng</button>
     </div>
 
     <script>
@@ -78,16 +81,38 @@
             "Hai mươi tháng mười ngày phụ nữ,\nChúc em mạnh mẽ vượt gian nan.\nNiềm vui cuộc sống luôn tràn đầy,\nBên cạnh người thân mãi bình an.",
             "Rạng rỡ nụ cười ngày 20/10,\nChúc chị khỏe mạnh đẹp muôn phần.\nCông việc suôn sẻ tình yêu thắm,\nHạnh phúc viên mãn mãi không ngừng."
         ];
+
+        // Hiệu ứng typewriter cho lời chúc
+        const wishText = "Chúc chị/em luôn mạnh khỏe, đẹp rạng ngời, nhiều niềm vui và có một ngày 20/10 hạnh phúc, trọn vẹn bên những người mình yêu thương";
+        const textElement = document.getElementById('wishText');
+        let i = 0;
+
+        function typeWriter() {
+            if (i < wishText.length) {
+                textElement.innerHTML += wishText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 50); // Tốc độ 100ms mỗi ký tự
+            } else {
+                // Hiển thị nút sau khi hiệu ứng hoàn tất
+                document.getElementById('giftButton').style.display = 'block';
+            }
+        }
+
+        // Bắt đầu hiệu ứng khi trang load
+        window.onload = typeWriter;
+
         function showPoem() {
             const randomPoem = poems[Math.floor(Math.random() * poems.length)];
             document.getElementById('poemText').innerText = randomPoem;
             document.getElementById('poem').style.display = 'block';
         }
         function closeWindow() {
-            window.close(); // Thử đóng tab
+            if (window.opener && !window.opener.closed) {
+                window.close(); // Thử đóng tab nếu được mở từ window.open
+            }
             setTimeout(() => {
-                window.location.href = 'about:blank'; // Fallback nếu window.close() không hoạt động
-            }, 100); // Chờ 100ms để đảm bảo window.close() được thử trước
+                window.location.href = 'index.html'; // Fallback quay về trang chính
+            }, 100); // Chờ 100ms để window.close() được thử trước
         }
     </script>
 </body>
